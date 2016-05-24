@@ -13,7 +13,7 @@
 
 ###########Assignment Definition######
 #
-##Using the Rolling Data Sales website, download and examine another housing sales data set, which will be given to you in the breakout room.
+##Using the Rolling Data Sales website, download and examine the housing sales data set for Manhattan. This dataset can be found [here](http://www1.nyc.gov/home/search/index.page?search-terms=Rolling+sales+update)
 #
 ##Goal: Create an RStudio project for the analysis of this data set. Your file structure within the project should include the following:
 #
