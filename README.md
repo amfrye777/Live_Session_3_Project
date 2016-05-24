@@ -33,8 +33,8 @@
 
 >Live_Session_3_Project
 -->Data
----->
----->
+---->rollingsales_manhattan_RAW_XLS.xls
+---->rollingsales_manhattan_RAW_CSV.csv
 
 -->Analysis
 ---->
