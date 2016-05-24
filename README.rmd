@@ -28,6 +28,7 @@
   * PaperTestFile.txt
 * README.md
 
-```{r test chunk}
-1+1
+```{r testchunk, include=FALSE}
+test<-1+1
+test
 ```
