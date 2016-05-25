@@ -1,4 +1,14 @@
-#README
+---
+title: "README"
+output: html_document
+---
+
+```{r DeclarePath, echo=  FALSE}
+##Change this path per your project root directory on your machine if you wish to regen the README.html file
+DefaultDir<-"D:/Documents/School/SMU/2016 Summer/MSDS 6306 - Into to Data Science/Assignments/Week 3/Live Session/Live_Session_3_Project"
+
+RResourcesDir<-paste(DefaultDir,"/RResources",sep = "")
+```
 
 ##GROUP MEMBERS
 * Russell Anderwald
@@ -15,21 +25,9 @@
 * A Paper directory containing a file (plain text or Markdown) that explains any meaningful patterns in this dataset.
 * Deliverable: A link to a repository (test-repo is fine) on GitHub containing the above. I need only one link per group. Since this is a group project, I expect you to divide the labor.
 
-##File Tree Structure Defined
-
-* Analysis
-  * AnalysisTestFile.txt
-* Data
-  * rollingsales_manhattan_Clean_Up.R
-  * rollingsales_manhattan_RAW_CSV.csv
-  * rollingsales_manhattan_RAW_XLS.xls
-* Live_Session_3_Project.Rproj
-* Paper
-  * PaperTestFile.txt
-* README.md
-
-
-```{r testchunk, include=FALSE}
-test<-1+1
-test
+##FILE TREE STRUCTURE DEFINED
+```{r Twee, echo = FALSE}
+setwd(DefaultDir)
+source(paste(RResourcesDir,"/twee.R",sep = ""))
+twee()
 ```
