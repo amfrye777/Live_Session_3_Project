@@ -1,0 +1,84 @@
+---
+title: "MSDS 6306_402_GroupHW_Wk3"
+author: "Anderwald, Frye, Farrar, Vitovsky"
+date: "May 25, 2016"
+output: 
+  html_document:
+    keep_md: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+Our team analyzed the the annual sales data of properties sold in Manhattan, NY.  This data "displays yearly sales information of properties sold in New York City," (http://www1.nyc.gov/site/finance/taxes/property-annualized-sales-update.page).
+
+##Required Packages
+The packages **plyr** and **gdata** are required to run commands we performed in organizing the data.  Additionally, we used **knitr** to generate reports from this file, and  **repmis** for additional options for reproduceable research.
+
+
+```{r Required Packages, include=FALSE}
+RequiredPackages <- c("plyr", "gdata", "repmis")
+lapply(RequiredPackages, require, character=TRUE)
+```
+
+
+##Data File
+One can download the file for themselves from the URL https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  We downloaded the most recent data as of the date of our report in May 2016.  After converting the Excel file to a CSV plain text document, we began checking out the data so that we could organize it for analysis. Of course, one can use the gdata package to read the .xls file into R as well. Please change the eval and include commands to "FALSE" or "TRUE" depending on whether you are using Windows or Mac.
+
+```{r ReadCSVonWindows, eval=TRUE, include=TRUE}
+ManhattanSales <- read.csv ('~/rollingsales_manhattan.csv', skip=4, header=TRUE)
+```
+
+```{r ReadCSVonMac, eval=FALSE, include=FALSE}
+ManhattanSales <- read.csv ("rollingsales_brooklyn.xls",pattern="BOROUGH")
+```
+
+```{r CheckOutTheData}
+head(ManhattanSales)
+summary(ManhattanSales)
+str(ManhattanSales)
+```
+
+We see that the data is made up of 21 variables, and includes 23,412 observations. As we read through the variable names and types, we see areas that we would like to clean up:
+
+  *Make sure the fields we need are read as the appropriate type (ex., Sales.Price   was read as a factor when it should be numeric).
+  
+  *Remove dollar signs and commas so that calculations can be adequately    
+  performed.
+  
+  *Run histograms to review the data and recognize strange/noticeable behaviors.
+  
+```{r CleanUpSalesPrice}
+#Change SALES.PRICE to numeric and see if there are NAs
+ManhattanSales$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", ManhattanSales$SALE.PRICE))
+count(is.na(ManhattanSales$SALE.PRICE.N))
+```
+
+```{r CleanUpCase}
+#Change all variable to lower case for ease
+names(ManhattanSales) <- tolower(names(ManhattanSales))
+
+```
+
+```{r CleanUpDate}
+#Change sale.date to Date format in R
+ManhattanSales$sale.date <- as.Date(ManhattanSales$sale.date, "%m/%d/%Y")
+ManhattanSales$year.built <- as.numeric(as.character(ManhattanSales$year.built))
+```
+
+```{r CheckHist, eval=FALSE, include=FALSE}
+hist(ManhattanSales$sale.price.n) 
+hist(ManhattanSales$sale.price[sale.price.n>0])
+hist(ManhattanSales$gross.sqft[sale.price.n==0])
+```
+
+After viewing histograms of the data, we see that we should transfor the data via the log command.  
+
+```{r TransformTheData, eval=FALSE, include=FALSE}
+
+ManhattanSales.sale <- ManhattanSales[ManahttanSales$sale.price.n!=0,]
+plot(ManhattanSales.sale$gross.sqft,ManhattanSales.sale$sale.price.n)
+plot(log(ManhattanSales.sale$gross.sqft),log(ManhattanSales.sale$sale.price.n))
+```
