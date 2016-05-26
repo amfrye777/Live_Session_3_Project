@@ -1,0 +1,47 @@
+\documentclass{article}
+%%%% Load LaTeX packages
+\usepackage{hyperref}
+\usepackage[authoryear]{natbib}
+
+%%%%knitr global options
+<<Global, include=FALSE>>=
+####set chunk options####
+
+
+####Load and cite required R packages
+#List of required packages.  
+
+RequiredPackages <- c("knitr", "plyr", "ggplot2", "doBy", "gdata", "repmis")
+
+# Load RequiredPackages
+repmis::LoadandCite(RequiredPackages, file="RequiredPackages.bib", install=FALSE)
+
+####Obtain housing data####
+#Alternatively, can download the file from #the URL listed below, and convert to plain #text instead of using the gdata function
+#'read.xls'. 
+
+ManhattanData <- read.xls(xls = "http://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/rollingsales_manhattan.xls", skip=4, header=TRUE)
+@
+
+%%%%Start Document Body
+
+
+\begin{document}
+%%%%Create Title%%%%
+\title{MSDS 6306 Group Assignment Week 3}
+\author{Russell Anderwald \\ Alex Frye\\ Christopher Farrar \\ Lindsay Vitovsky}
+\date{June 2016}
+%%%%Article Introduction%%%%
+\section*{Introduction}
+Per the data source website, \ref{http://www1.nyc.gov/site/finance/taxes/property-annualized-sales-update.page} this data displays yearly sales information of properties sold in New York City. Let's do some preliminary work to review the data and clean it up, if necessary.\\
+
+First, let's find out the headings, summary, and structure of the dataset...
+<< Check Data >>=
+head(ManhattanData)
+summary(ManhattanData)
+str(ManhattanData)
+@
+
+
+
+\end{document}
