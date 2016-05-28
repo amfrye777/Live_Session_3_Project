@@ -26,19 +26,23 @@ lapply(RequiredPackages, require, character=TRUE)
 
 ##Data File
 One can download the file for themselves from the URL https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  We downloaded the most recent data as of the date of our report in May 2016.  After converting the Excel file to a CSV plain text document, we began checking out the data so that we could organize it for analysis. Of course, one can use the gdata package to read the .xls file into R as well. Please change the eval and include commands to "FALSE" or "TRUE" depending on whether you are using Windows or Mac.
+```{r URLChunkReadXLS}
 
-```{r ReadCSVonWindows, eval=TRUE, include=TRUE}
-ManhattanSales <- read.csv ('~/rollingsales_manhattan.csv', skip=4, header=TRUE)
+MSales <- read.xls(xls = "http://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/rollingsales_manhattan.xls", skip=4, header=TRUE)
+```
+
+```{r ReadCSVonWindows, eval=FALSE, include=FALSE}
+MSales <- read.csv(xls='~/rollingsales_manhattan.csv', skip=4, header=TRUE)
 ```
 
 ```{r ReadCSVonMac, eval=FALSE, include=FALSE}
-ManhattanSales <- read.csv ("rollingsales_brooklyn.xls",pattern="BOROUGH")
+MSales <- read.csv ("rollingsales_brooklyn.xls",pattern="BOROUGH")
 ```
 
 ```{r CheckOutTheData}
-head(ManhattanSales)
-summary(ManhattanSales)
-str(ManhattanSales)
+head(MSales)
+summary(MSales)
+str(MSales)
 ```
 
 We see that the data is made up of 21 variables, and includes 23,412 observations. As we read through the variable names and types, we see areas that we would like to clean up:
@@ -52,33 +56,32 @@ We see that the data is made up of 21 variables, and includes 23,412 observation
   
 ```{r CleanUpSalesPrice}
 #Change SALES.PRICE to numeric and see if there are NAs
-ManhattanSales$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", ManhattanSales$SALE.PRICE))
-count(is.na(ManhattanSales$SALE.PRICE.N))
+MSales$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", MSales$SALE.PRICE))
+count(is.na(MSales$SALE.PRICE.N))
 ```
 
 ```{r CleanUpCase}
 #Change all variable to lower case for ease
-names(ManhattanSales) <- tolower(names(ManhattanSales))
+names(MSales) <- tolower(names(MSales))
 
 ```
 
 ```{r CleanUpDate}
 #Change sale.date to Date format in R
-ManhattanSales$sale.date <- as.Date(ManhattanSales$sale.date, "%m/%d/%Y")
-ManhattanSales$year.built <- as.numeric(as.character(ManhattanSales$year.built))
+MSales$sale.date <- as.Date(MSales$sale.date, "%m/%d/%Y")
+MSales$year.built <- as.numeric(as.character(MSales$year.built))
 ```
 
-```{r CheckHist, eval=FALSE, include=FALSE}
-hist(ManhattanSales$sale.price.n) 
-hist(ManhattanSales$sale.price[sale.price.n>0])
-hist(ManhattanSales$gross.sqft[sale.price.n==0])
+```{r CheckHist}
+hist(MSales$sale.price.n) 
+hist(as.numeric(MSales$sale.price[MSales$sale.price.n>0]), main = "Histogram of Sales Prices", xlab = "Sales Price", col = "red")
+hist(MSales$gross.square.feet[MSales$gross.square.feet==0], main = "Histogram of Square Feet", xlab = "Square Feet", col = "red")
 ```
 
 After viewing histograms of the data, we see that we should transfor the data via the log command.  
 
-```{r TransformTheData, eval=FALSE, include=FALSE}
-
-ManhattanSales.sale <- ManhattanSales[ManahttanSales$sale.price.n!=0,]
-plot(ManhattanSales.sale$gross.sqft,ManhattanSales.sale$sale.price.n)
-plot(log(ManhattanSales.sale$gross.sqft),log(ManhattanSales.sale$sale.price.n))
-```
+```{r TransformTheData}
+MSales.sale <- MSales[MSales$sale.price.n!=0,]
+plot(MSales.sale$gross.square.feet,MSales.sale$sale.price.n, ylab = "Square Feet", xlab = "Sales Price")
+plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n), ylab = "Log of Square Feet", xlab = "Log of Sales Price")
+``` 
