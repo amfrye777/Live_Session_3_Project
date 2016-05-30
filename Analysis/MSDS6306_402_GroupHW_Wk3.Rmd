@@ -32,7 +32,7 @@ MSales <- read.xls(xls = "http://www1.nyc.gov/assets/finance/downloads/pdf/rolli
 ```
 
 ```{r ReadCSVonWindows, eval=FALSE, include=FALSE}
-MSales <- read.csv(xls='~/rollingsales_manhattan.csv', skip=4, header=TRUE)
+MSales <- read.csv("rollingsales_manhattan.csv", skip=4, header=TRUE)
 ```
 
 ```{r ReadCSVonMac, eval=FALSE, include=FALSE}
