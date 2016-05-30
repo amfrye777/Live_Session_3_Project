@@ -1,0 +1,84 @@
+> library(lubridate)
+> str(MSales)
+'data.frame':	23412 obs. of  23 variables:
+ $ borough                       : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ neighborhood                  : Factor w/ 39 levels "ALPHABET CITY            ",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ building.class.category       : Factor w/ 42 levels "01  ONE FAMILY DWELLINGS                    ",..: 3 3 4 5 5 5 5 5 5 5 ...
+ $ tax.class.at.present          : Factor w/ 8 levels "1","1A","1C",..: 1 1 3 6 6 4 4 4 4 4 ...
+ $ block                         : int  376 377 399 373 373 377 377 385 387 387 ...
+ $ lot                           : int  24 66 1101 16 17 2 2 2 119 119 ...
+ $ ease.ment                     : logi  NA NA NA NA NA NA ...
+ $ building.class.at.present     : Factor w/ 123 levels "A1","A4","A5",..: 10 10 92 11 11 17 17 17 17 17 ...
+ $ address                       : Factor w/ 12053 levels "1 5TH AVENUE, 11F/G                      ",..: 5794 5235 5071 7252 7266 738 738 4096 10862 10862 ...
+ $ apartment.number              : Factor w/ 2758 levels "-           ",..: 2 2 1 2 2 2 2 2 2 2 ...
+ $ zip.code                      : int  10009 10009 10009 10009 10009 10009 10009 10009 10009 10009 ...
+ $ residential.units             : num  3 3 1 10 10 22 22 12 22 22 ...
+ $ commercial.units              : num  0 0 0 0 0 3 3 4 2 2 ...
+ $ total.units                   : int  3 3 1 10 10 25 25 16 24 24 ...
+ $ land.square.feet              : int  2059 2381 0 2204 2204 4510 4510 4186 3445 3445 ...
+ $ gross.square.feet             : int  3696 3084 0 8625 8625 19830 19830 10588 13546 13546 ...
+ $ year.built                    : num  1900 1899 1955 1899 1900 ...
+ $ tax.class.at.time.of.sale     : int  1 1 1 2 2 2 2 2 2 2 ...
+ $ building.class.at.time.of.sale: Factor w/ 123 levels "A1","A4","A5",..: 10 10 92 11 11 17 17 17 17 17 ...
+ $ sale.price                    : Factor w/ 6619 levels " $-   "," $1 ",..: 2989 2312 5042 2357 1 1579 1 1 1160 1 ...
+ $ sale.date                     : Date, format: "2015-10-22" "2015-06-24" "2015-06-15" "2015-11-17" ...
+ $ sale.price.n                  : num  3775000 2900000 6995000 20000000 NA ...
+ $ residential.units.units       : num  3 3 1 10 10 22 22 12 22 22 ...
+> summary(MSales)
+    borough                     neighborhood                                   building.class.category tax.class.at.present
+ Min.   :1   MIDTOWN WEST             : 4728   13  CONDOS - ELEVATOR APARTMENTS            :7641       2      :16531       
+ 1st Qu.:1   UPPER EAST SIDE (59-79)  : 2180   10  COOPS - ELEVATOR APARTMENTS             :6414       4      : 5342       
+ Median :1   UPPER EAST SIDE (79-96)  : 1705   45  CONDO HOTELS                            :2735       2C     :  650       
+ Mean   :1   UPPER WEST SIDE (59-79)  : 1657   17  CONDO COOPS                             :1219       1      :  361       
+ 3rd Qu.:1   MIDTOWN EAST             : 1418   26  OTHER HOTELS                            :1203       2B     :  305       
+ Max.   :1   UPPER WEST SIDE (79-96)  :  970   07  RENTALS - WALKUP APARTMENTS             : 867       2A     :  203       
+             (Other)                  :10754   (Other)                                     :3333       (Other):   20       
+     block           lot         ease.ment      building.class.at.present                                      address     
+ Min.   :   7   Min.   :   1.0   Mode:logical   R4     :7640              1335 AVENUE OF THE AMERIC                : 2013  
+ 1st Qu.: 858   1st Qu.:  37.0   NA's:23412     D4     :6169              102 WEST 57TH STREET                     : 1096  
+ Median :1047   Median :1010.0                  RH     :2735              1335 AVENUE OF THE AMER                  :  416  
+ Mean   :1107   Mean   : 803.2                  R9     :1219              551 MAIN STREET, RES                     :  231  
+ 3rd Qu.:1409   3rd Qu.:1302.0                  H3     :1192              11 MADISON AVENUE                        :  215  
+ Max.   :2250   Max.   :9117.0                  C6     : 781              50 RIVERSIDE BOULEVARD                   :  192  
+                                                (Other):3676              (Other)                                  :19249  
+     apartment.number    zip.code     residential.units commercial.units    total.units       land.square.feet  gross.square.feet
+             :11771   Min.   :    0   Min.   :   0.00   Min.   :  0.0000   Min.   :   0.000   Min.   :      0   Min.   :      0  
+ HU2         : 1542   1st Qu.:10016   1st Qu.:   0.00   1st Qu.:  0.0000   1st Qu.:   0.000   1st Qu.:      0   1st Qu.:      0  
+ TIMES       :  893   Median :10019   Median :   0.00   Median :  0.0000   Median :   1.000   Median :      0   Median :      0  
+ 5A          :   87   Mean   :10030   Mean   :   2.29   Mean   :  0.3305   Mean   :   2.768   Mean   :   1048   Mean   :   9066  
+ 5B          :   83   3rd Qu.:10028   3rd Qu.:   1.00   3rd Qu.:  0.0000   3rd Qu.:   1.000   3rd Qu.:      0   3rd Qu.:      0  
+ 3A          :   77   Max.   :10463   Max.   :8759.00   Max.   :211.0000   Max.   :8805.000   Max.   :2675000   Max.   :8942176  
+ (Other)     : 8959                                                                                                              
+   year.built   tax.class.at.time.of.sale building.class.at.time.of.sale        sale.price      sale.date           sale.price.n      
+ Min.   :   0   Min.   :1.00              R4     :7641                    $-         : 4801   Min.   :2015-05-01   Min.   :1.000e+00  
+ 1st Qu.:1920   1st Qu.:2.00              D4     :6169                    $45,000    :  217   1st Qu.:2015-07-22   1st Qu.:3.950e+05  
+ Median :1958   Median :2.00              RH     :2735                    $10        :   97   Median :2015-10-05   Median :8.550e+05  
+ Mean   :1763   Mean   :2.44              R9     :1219                    $850,000   :   84   Mean   :2015-10-11   Mean   :3.456e+06  
+ 3rd Qu.:1979   3rd Qu.:2.00              H3     :1193                    $650,000   :   80   3rd Qu.:2015-12-28   3rd Qu.:2.000e+06  
+ Max.   :2015   Max.   :4.00              C6     : 781                    $1,500,000 :   76   Max.   :2016-04-29   Max.   :4.111e+09  
+                                          (Other):3674                   (Other)     :18057                        NA's   :4801       
+ residential.units.units
+ Min.   :   0.00        
+ 1st Qu.:   0.00        
+ Median :   0.00        
+ Mean   :   2.29        
+ 3rd Qu.:   1.00        
+ Max.   :8759.00        
+                        
+> MSales$residential.units <- as.numeric(as.character((MSales$residential.units)))
+> Residential <- quarter(MSales$residential.units, with_year = FALSE)
+> MSalesRQ <- na.omit(Residential)
+> Commerical <- quarter(MSales$commercial.units, with_year = FALSE)
+> MSalesCQ <- na.omit(Commerical)
+> plot(MSales$sale.date,MSalesCQ, ylab = "Commerical Units", xlab = "Sale Price")
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> plot(MSales$sale.date,MSalesRQ, ylab = "Residential Units", xlab = "Sale Price")
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> length(MSales$sale.date)
+[1] 23412
+> length(MSalesCQ)
+[1] 2206
+> length(MSalesRQ)
+[1] 9084
