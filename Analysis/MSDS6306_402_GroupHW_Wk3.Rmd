@@ -36,7 +36,7 @@ MSales <- read.csv("rollingsales_manhattan.csv", skip=4, header=TRUE)
 ```
 
 ```{r ReadCSVonMac, eval=FALSE, include=FALSE}
-MSales <- read.csv ("rollingsales_brooklyn.xls",pattern="BOROUGH")
+MSales <- read.csv ("rollingsales_manhattan.csv",pattern="BOROUGH")
 ```
 
 ```{r CheckOutTheData}
