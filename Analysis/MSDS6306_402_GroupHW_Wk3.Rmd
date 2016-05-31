@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
-Our team analyzed the the annual sales data of properties sold in Manhattan, NY.  This data "displays yearly sales information of properties sold in New York City," (http://www1.nyc.gov/site/finance/taxes/property-annualized-sales-update.page).
+Our team analyzed the the annual sales data of properties sold in Manhattan, NY.  
 
 ##Required Packages
 The packages **plyr** and **gdata** are required to run commands we performed in organizing the data. 
