@@ -36,6 +36,7 @@ twee()
 ```
 
 ##PROJECT INSTRUCTIONS
+Given the sequential nature of the data cleanup, it is recommended that one runs the code chunks in order.
 1. Regenerate README (If Project File Structure Changes)
     i) Open README.RMD located inside Project Root
     ii) Modify DefaultDir input to your Project's Root Directory Path
