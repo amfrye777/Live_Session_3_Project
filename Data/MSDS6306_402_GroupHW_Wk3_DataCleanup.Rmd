@@ -7,7 +7,7 @@ output:
     keep_md: TRUE
 ---
 
-```{r setup, include=FALSE}
+```{r DataCleanupSetup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -25,7 +25,7 @@ lapply(RequiredPackages, require, character=TRUE)
 
 
 ##Data File
-As of the date of this analysis, we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
+As of the date of this analysis(5/23/2016), we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
 
 ```{r ReadCSVonWindows, include=FALSE}
 MSales <- read.csv(paste(DataDir,"/rollingsales_manhattan_RAW_CSV.csv",sep = ""), skip=4, header=TRUE)
@@ -70,7 +70,7 @@ hist(as.numeric(MSales$sale.price[MSales$sale.price.n>0]), main = "Histogram of 
 hist(MSales$gross.square.feet[MSales$gross.square.feet==0], main = "Histogram of Square Feet", xlab = "Square Feet", col = "red")
 ```
 
-After viewing histograms of the data, we see that we should transfor the data via the log command.  
+After viewing histograms of the data, we see that we should transform the data via the log command.  
 
 ```{r TransformTheData}
 MSales.sale <- MSales[MSales$sale.price.n!=0,]
@@ -80,9 +80,3 @@ plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n), ylab = "L
 
 ## Outliers 
 We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
-
-``` {r Outliers}
-MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
-MSales.sale <- MSales.sale[which(MSales.sale$outliers==0),]
-plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n),main = "Home Sales by Square Footage", ylab = "Sales Price", xlab = "Gross Square Feet")
-```

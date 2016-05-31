@@ -14,13 +14,17 @@ DataDir<-paste(DefaultDir,"/Data",sep = "")
 AnalysisDir<-paste(DefaultDir,"/Analysis",sep = "")
 ```
 
+#Introduction
+
+
 #Data Cleanup Tasks
 
-``` {r data, child = paste(DataDir,"/MSDS6306_402_GroupHW_Wk3.rmd",sep = "")}
+``` {r data, child = paste(DataDir,"/MSDS6306_402_GroupHW_Wk3_DataCleanup.rmd",sep = "")}
 ```
 
 #Data Analysis Tasks
 
-``` {r Analysis, child = paste(AnalysisDir,"/MSDS6306_402_GroupHW_Wk3.rmd",sep = "")}
+``` {r Analysis, child = paste(AnalysisDir,"/Analysis_of_Plot.rmd",sep = "")}
 ```
 
+#Conclusion
