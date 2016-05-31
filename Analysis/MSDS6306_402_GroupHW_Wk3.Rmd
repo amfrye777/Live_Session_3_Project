@@ -25,18 +25,10 @@ lapply(RequiredPackages, require, character=TRUE)
 
 
 ##Data File
-One can download the file for themselves from the URL https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  We downloaded the most recent data as of the date of our report in May 2016.  After converting the Excel file to a CSV plain text document, we began checking out the data so that we could organize it for analysis. Of course, one can use the gdata package to read the .xls file into R as well. Please change the eval and include commands to "FALSE" or "TRUE" depending on whether you are using Windows or Mac.
-```{r URLChunkReadXLS}
+As of the date of this analysis, we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
 
-MSales <- read.xls(xls = "http://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/rollingsales_manhattan.xls", skip=4, header=TRUE)
-```
-
-```{r ReadCSVonWindows, eval=FALSE, include=FALSE}
+```{r ReadCSVonWindows, eval=TRUE, include=FALSE}
 MSales <- read.csv("rollingsales_manhattan.csv", skip=4, header=TRUE)
-```
-
-```{r ReadCSVonMac, eval=FALSE, include=FALSE}
-MSales <- read.csv ("rollingsales_manhattan.csv",pattern="BOROUGH")
 ```
 
 ```{r CheckOutTheData}
