@@ -11,10 +11,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction
-Our team analyzed the the annual sales data of properties sold in Manhattan, NY.  
 
-##Required Packages
+###Required Packages
 The packages **plyr** and **gdata** are required to run commands we performed in organizing the data. 
 
 
@@ -24,8 +22,10 @@ lapply(RequiredPackages, require, character=TRUE)
 ```
 
 
-##Data File
-As of the date of this analysis(5/23/2016), we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
+###Data File
+As of the date of this analysis(5/23/2016), we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  
+
+To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
 
 ```{r ReadCSVonWindows, include=FALSE}
 MSales <- read.csv(paste(DataDir,"/rollingsales_manhattan_RAW_CSV.csv",sep = ""), skip=4, header=TRUE)
@@ -37,20 +37,24 @@ summary(MSales)
 str(MSales)
 ```
 
-We see that the data is made up of 21 variables, and includes 23,412 observations. As we read through the variable names and types, we see areas that we would like to clean up:
+We see that the data is made up of 21 variables, and includes 23,412 observations. 
 
-  *Make sure the fields we need are read as the appropriate type (ex., Sales.Price   was read as a factor when it should be numeric).
-  
-  *Remove dollar signs and commas so that calculations can be adequately    
+###Data Cleanup
+
+As we read through the variable names and types, we see areas that we would like to clean up:
+
+* Make sure the fields we need are read as the appropriate type (ex., Sales.Price was read as a factor when it should be numeric).
+* Remove dollar signs and commas so that calculations can be adequately    
   performed.
-  
-  *Run histograms to review the data and recognize strange/noticeable behaviors.
+* Run histograms to review the data and recognize strange/noticeable behaviors.
   
 ```{r CleanUpSalesPrice}
 #Change SALES.PRICE to numeric and see if there are NAs
 MSales$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", MSales$SALE.PRICE))
 count(is.na(MSales$SALE.PRICE.N))
 ```
+
+
 
 ```{r CleanUpCase}
 #Change all variable to lower case for ease
@@ -64,13 +68,17 @@ MSales$sale.date <- as.Date(MSales$sale.date, "%m/%d/%Y")
 MSales$year.built <- as.numeric(as.character(MSales$year.built))
 ```
 
+###Sales Price Outliers
+
 ```{r CheckHist}
 hist(MSales$sale.price.n) 
 hist(as.numeric(MSales$sale.price[MSales$sale.price.n>0]), main = "Histogram of Sales Prices", xlab = "Sales Price", col = "red")
 hist(MSales$gross.square.feet[MSales$gross.square.feet==0], main = "Histogram of Square Feet", xlab = "Square Feet", col = "red")
 ```
 
-After viewing histograms of the data, we see that we should transform the data via the log command.  
+We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
+
+###Transformation
 
 ```{r TransformTheData}
 MSales.sale <- MSales[MSales$sale.price.n!=0,]
@@ -78,5 +86,14 @@ plot(MSales.sale$gross.square.feet,MSales.sale$sale.price.n, ylab = "Square Feet
 plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n), ylab = "Log of Square Feet", xlab = "Log of Sales Price")
 ```
 
-## Outliers 
-We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
+After viewing histograms of the data and plotting gross square feet against salesprice (where price does not equal zero), we see that we should transform the data via the log command due to skewness.  
+
+###Transformation Outliers
+
+```{r LogOutliers}
+MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
+MSales.sale <- MSales.sale[which(MSales.sale$outliers==0),]
+```
+
+After analyzing the plot of our transformed data, it was apparent that we had several data outliers where the log of Square Footage was less than or equal to 5. We have updated our dataset to eliminate these values for further analysis.
+

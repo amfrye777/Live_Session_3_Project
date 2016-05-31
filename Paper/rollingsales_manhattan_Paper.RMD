@@ -17,14 +17,22 @@ AnalysisDir<-paste(DefaultDir,"/Analysis",sep = "")
 #Introduction
 
 
-#Data Cleanup Tasks
+#Data Cleanup on Annual Manhattan Housing Sales 
+
+When originally loading data into R for analysis, we identified several inconsistencies with how the data was represented upon initial load. Due to these inconsistencies we have outlined several steps we went through to clean our data types and handling of data outliers where appropriate. The next sections will discuss and walk through the process of cleaning our Manhattan Sales Dataset
 
 ``` {r data, child = paste(DataDir,"/MSDS6306_402_GroupHW_Wk3_DataCleanup.rmd",sep = "")}
 ```
 
-#Data Analysis Tasks
+#Data Analysis on the relationship between Sales Price and Square Footage
+
+After cleaning the data, we were able to focus in on our analysis on the plot of Sales price and Square Footage. Below are our findings. 
 
 ``` {r Analysis, child = paste(AnalysisDir,"/Analysis_of_Plot.rmd",sep = "")}
 ```
 
 #Conclusion
+
+In analyzing our raw Manhattan Housing Sales data from nyc.gov, it was imperative that we do some data cleanup prior to analyzing anything. Two important parts to data analysis is ensuring your data is gathered consistently and reliably, and ensuring that your data gathered is clean for analysis. It is very easy to compute findings with reliable data, but misrepresent the information through poor assumptions that the data is 100% clean when it arrives. 
+
+With our cleaned data, we have evidence that there is a positive trend in the data identifying that as square footage of homes increase, so does that of Sales price. Although our findings provide evidence of this conclusion, we may only state this for the population of Manhattan sales gathered by nyc.gov in the range 2015-05-01 through 2016-04-29. Inferences to housing prices in any other region or time period may not be concluded without further investigation.

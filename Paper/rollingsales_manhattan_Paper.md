@@ -6,24 +6,26 @@ Russell Anderwald; Alex Frye; Christopher Farrar; Lindsay Vitovsky
 #Introduction
 
 
-#Data Cleanup Tasks
+#Data Cleanup on Annual Manhattan Housing Sales 
+
+When originally loading data into R for analysis, we identified several inconsistencies with how the data was represented upon initial load. Due to these inconsistencies we have outlined several steps we went through to clean our data types and handling of data outliers where appropriate. The next sections will discuss and walk through the process of cleaning our Manhattan Sales Dataset
 
 
 
 
 
-## Introduction
-Our team analyzed the the annual sales data of properties sold in Manhattan, NY.  
 
-##Required Packages
+###Required Packages
 The packages **plyr** and **gdata** are required to run commands we performed in organizing the data. 
 
 
 
 
 
-##Data File
-As of the date of this analysis, we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
+###Data File
+As of the date of this analysis(5/23/2016), we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  
+
+To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
 
 
 
@@ -192,14 +194,16 @@ str(MSales)
 ##  $ SALE.DATE                     : Factor w/ 339 levels "1/1/2016","1/11/2016",..: 40 236 227 65 65 311 311 143 115 115 ...
 ```
 
-We see that the data is made up of 21 variables, and includes 23,412 observations. As we read through the variable names and types, we see areas that we would like to clean up:
+We see that the data is made up of 21 variables, and includes 23,412 observations. 
 
-  *Make sure the fields we need are read as the appropriate type (ex., Sales.Price   was read as a factor when it should be numeric).
-  
-  *Remove dollar signs and commas so that calculations can be adequately    
+###Data Cleanup
+
+As we read through the variable names and types, we see areas that we would like to clean up:
+
+* Make sure the fields we need are read as the appropriate type (ex., Sales.Price was read as a factor when it should be numeric).
+* Remove dollar signs and commas so that calculations can be adequately    
   performed.
-  
-  *Run histograms to review the data and recognize strange/noticeable behaviors.
+* Run histograms to review the data and recognize strange/noticeable behaviors.
   
 
 ```r
@@ -215,6 +219,8 @@ count(is.na(MSales$SALE.PRICE.N))
 ```
 
 
+
+
 ```r
 #Change all variable to lower case for ease
 names(MSales) <- tolower(names(MSales))
@@ -226,6 +232,8 @@ names(MSales) <- tolower(names(MSales))
 MSales$sale.date <- as.Date(MSales$sale.date, "%m/%d/%Y")
 MSales$year.built <- as.numeric(as.character(MSales$year.built))
 ```
+
+###Sales Price Outliers
 
 
 ```r
@@ -246,7 +254,9 @@ hist(MSales$gross.square.feet[MSales$gross.square.feet==0], main = "Histogram of
 
 ![](rollingsales_manhattan_Paper_files/figure-html/CheckHist-3.png)<!-- -->
 
-After viewing histograms of the data, we see that we should transfor the data via the log command.  
+We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
+
+###Transformation
 
 
 ```r
@@ -262,19 +272,22 @@ plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n), ylab = "L
 
 ![](rollingsales_manhattan_Paper_files/figure-html/TransformTheData-2.png)<!-- -->
 
-## Outliers 
-We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
+After viewing histograms of the data and plotting gross square feet against salesprice (where price does not equal zero), we see that we should transform the data via the log command due to skewness.  
+
+###Transformation Outliers
 
 
 ```r
 MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
 MSales.sale <- MSales.sale[which(MSales.sale$outliers==0),]
-plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n),main = "Home Sales by Square Footage", ylab = "Sales Price", xlab = "Gross Square Feet")
 ```
 
-![](rollingsales_manhattan_Paper_files/figure-html/Outliers-1.png)<!-- -->
+After analyzing the plot of our transformed data, it was apparent that we had several data outliers where the log of Square Footage was less than or equal to 5. We have updated our dataset to eliminate these values for further analysis.
 
-#Data Analysis Tasks
+
+#Data Analysis on the relationship between Sales Price and Square Footage
+
+After cleaning the data, we were able to focus in on our analysis on the plot of Sales price and Square Footage. Below are our findings. 
 
 
 
@@ -310,3 +323,7 @@ You can also embed plots, for example:
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 #Conclusion
+
+In analyzing our raw Manhattan Housing Sales data from nyc.gov, it was imperative that we do some data cleanup prior to analyzing anything. Two important parts to data analysis is ensuring your data is gathered consistently and reliably, and ensuring that your data gathered is clean for analysis. It is very easy to compute findings with reliable data, but misrepresent the information through poor assumptions that the data is 100% clean when it arrives. 
+
+With our cleaned data, we have evidence that there is a positive trend in the data identifying that as square footage of homes increase, so does that of Sales price. Although our findings provide evidence of this conclusion, we may only state this for the population of Manhattan sales gathered by nyc.gov in the range 2015-05-01 through 2016-04-29. Inferences to housing prices in any other region or time period may not be concluded without further investigation.
