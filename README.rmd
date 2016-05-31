@@ -36,13 +36,12 @@ twee()
 ```
 
 ##PROJECT INSTRUCTIONS
-Given the sequential nature of the data cleanup, it is recommended that one runs the code chunks in order.
-1. Regenerate README (If Project File Structure Changes)
-    i) Open README.RMD located inside Project Root
-    ii) Modify DefaultDir input to your Project's Root Directory Path
-    iii) Knit README.Rmd
-2. Regenerate RollingSales_Manhattan_Paper.HTML
-    i) Open RollingSales_Manhattan_Paper.RMD
-    ii) Modify DefaultDir input to your Project's Root Directory Path
-    iii) Knit RollingSales_Manhattan_Paper.RMD
 
+1. Regenerate README (If Project File Structure Changes)
+    + Open README.RMD located inside Project Root
+    + Modify DefaultDir input to your Project's Root Directory Path
+    + Knit README.Rmd
+2. Regenerate RollingSales_Manhattan_Paper.HTML
+    + Open RollingSales_Manhattan_Paper.RMD
+    + Modify DefaultDir input to your Project's Root Directory Path
+    + Knit RollingSales_Manhattan_Paper.RMD
