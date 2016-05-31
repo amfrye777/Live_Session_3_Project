@@ -16,7 +16,7 @@ AnalysisDir<-paste(DefaultDir,"/Analysis",sep = "")
 
 #Data Cleanup Tasks
 
-``` {r data, child = paste(DataDir,"/rollingsales_manhattan_Clean_Up_Frye.rmd",sep = "")}
+``` {r data, child = paste(DataDir,"/MSDS6306_402_GroupHW_Wk3.rmd",sep = "")}
 ```
 
 #Data Analysis Tasks
@@ -24,8 +24,3 @@ AnalysisDir<-paste(DefaultDir,"/Analysis",sep = "")
 ``` {r Analysis, child = paste(AnalysisDir,"/MSDS6306_402_GroupHW_Wk3.rmd",sep = "")}
 ```
 
-``` {r testttt}
-MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
-MSales.sale <- MSales.sale[which(MSales.sale$outliers==0),]
-plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n),main = "Home Sales by Square Footage", ylab = "Sales Price", xlab = "Gross Square Feet")
-```
