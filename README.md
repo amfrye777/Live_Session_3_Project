@@ -49,7 +49,6 @@ FILE TREE STRUCTURE DEFINED
     ##          |__CheckHist-1.png
     ##          |__CheckHist-2.png
     ##          |__CheckHist-3.png
-    ##          |__Outliers-1.png
     ##          |__pressure-1.png
     ##          |__TransformTheData-1.png
     ##          |__TransformTheData-2.png
