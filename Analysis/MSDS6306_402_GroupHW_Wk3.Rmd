@@ -79,7 +79,7 @@ plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n), ylab = "L
 ```
 
 ## Outliers 
-We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these as outliers.
+We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
 
 ``` {r Outliers}
 MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
