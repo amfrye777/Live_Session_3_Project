@@ -27,8 +27,8 @@ lapply(RequiredPackages, require, character=TRUE)
 ##Data File
 As of the date of this analysis, we sourced our data from the following URL: https://www1.nyc.gov/assets/finance/downloads/pdf/rolling_sales/neighborhood_sales/manhattan_sales_prices.xls.  To work with raw data, we converted the XLS file to a CSV file, which can be found in our Analysis folder. 
 
-```{r ReadCSVonWindows, eval=TRUE, include=FALSE}
-MSales <- read.csv("rollingsales_manhattan.csv", skip=4, header=TRUE)
+```{r ReadCSVonWindows, include=FALSE}
+MSales <- read.csv(paste(DataDir,"/rollingsales_manhattan_RAW_CSV.csv",sep = ""), skip=4, header=TRUE)
 ```
 
 ```{r CheckOutTheData}
