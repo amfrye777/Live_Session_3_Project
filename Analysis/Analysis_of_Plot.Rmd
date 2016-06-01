@@ -16,7 +16,7 @@ After plotting the square footage by sales price, we see that:
   
   * the lowest sale prices did not belong to the smallest homes.  This supports our second point above.
   
-  * even though there is a diverse array of data points, the prices seem to be most concentrated in the middle of the graph, the log of square footage falling between 8-8.5, and the log of sales price lying between 15-16.  We added mean in red) and median (blue) points to illustrate this. 
+  * even though there is a diverse array of data points, the prices seem to be most concentrated in the middle of the graph, the log of square footage falling between 8-8.5, and the log of sales price lying between 15-16.  We added mean (red) and median (blue) points to illustrate this. 
   
   * it seems that one would would have needed a budget of at least $1.5 million in 2015 to begin to be able to afford a 1300 square foot home.
   
