@@ -53,8 +53,10 @@ As we read through the variable names and types, we see areas that we would like
 MSales$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", MSales$SALE.PRICE))
 count(is.na(MSales$SALE.PRICE.N))
 ```
-
-
+```{r CleanUpDataType}
+MSales$gross.sqft <- as.numeric(gsub("[^[:digit:]]","", MSales$gross.square.feet))
+MSales$land.sqft <- as.numeric(gsub("[^[:digit:]]","", MSales$land.square.feet))
+```
 
 ```{r CleanUpCase}
 #Change all variable to lower case for ease
@@ -76,9 +78,9 @@ hist(as.numeric(MSales$sale.price[MSales$sale.price.n>0]), main = "Histogram of 
 hist(MSales$gross.square.feet[MSales$gross.square.feet==0], main = "Histogram of Square Feet", xlab = "Square Feet", col = "red")
 ```
 
-We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.
+We see that there are many instances where sales price was $0, which doesn't seem likely.  What is more likely is that the sales price wasn't available or not gathered.  For this reason, we are comfortable removing these outliers.  We then see that the data is more manageable and viewable when we use the log command to tranform the data with the log function.
 
-###Transformation
+###Remove Outliers and Transform the Data
 
 ```{r TransformTheData}
 MSales.sale <- MSales[MSales$sale.price.n!=0,]
@@ -86,14 +88,20 @@ plot(MSales.sale$gross.square.feet,MSales.sale$sale.price.n, ylab = "Square Feet
 plot(log(MSales.sale$gross.square.feet),log(MSales.sale$sale.price.n), ylab = "Log of Square Feet", xlab = "Log of Sales Price")
 ```
 
-After viewing histograms of the data and plotting gross square feet against salesprice (where price does not equal zero), we see that we should transform the data via the log command due to skewness.  
+If we limit the data to 1-, 2-, and 3- family homes...
 
-###Transformation Outliers
+```{r 123FamilyHomes}
+MSales.homes <- MSales.sale[which(grepl("FAMILY",MSales.sale$building.class.category)),]
+dim(MSales.homes)
+plot(log(MSales.homes$gross.sqft),log(MSales.homes$sale.price.n))
+summary(MSales.homes[which(MSales.homes$sale.price.n<100000),])
+```
+...then we run our plots again, removing the values that do not indicate an actual sale was made.
+
 
 ```{r LogOutliers}
 MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
 MSales.sale <- MSales.sale[which(MSales.sale$outliers==0),]
 ```
 
-After analyzing the plot of our transformed data, it was apparent that we had several data outliers where the log of Square Footage was less than or equal to 5. We have updated our dataset to eliminate these values for further analysis.
 
