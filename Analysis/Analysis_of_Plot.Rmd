@@ -12,7 +12,7 @@ After plotting the square footage by sales price, we see that:
 
   * the highest sales for 1-, 2-, and 3- family homes were also the largest.
   
-  * while the most expensive home were the largest, in general, the data seem spread out enough that there might be another factor that would play into the home price.  We are curious to know if the quarter in with the home was sold or the zip code have as much as if not more of a role in the sales price of a home in Manhattan.
+  * while the most expensive home were the largest, in general, the data seem spread out enough that there might be another factor that would play into the home price.  We are curious to know if the quarter in which the home was sold, or the zip code, have as much as if not more of a role in the sales price of a home in Manhattan.
   
   * the lowest sale prices did not belong to the smallest homes.  This supports our second point above.
   
