@@ -1,0 +1,21 @@
+---
+title: "Executive Summary and Introduction"
+author: "Scott Anderwald"
+date: "June 1, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Executive Summary
+This project provides an analysis of the property values for the Borough of Manhattan.  This analysis was only provided for the Borough of the Manhattan area no other areas where included in the analysis. In particular, the question of the gross footage versus property values.  The results of the analysis can be found in the Analysis folder on GitHub.   
+The analysis began with the importing and cleaning of the data.  Since certain computations produce incompatible characters that alter the results of the analysis cleaning and removing these characters made it possible for a more precise analysis to be performed.  
+The project provided a means to teach file structure and simple analysis on data sets.  Since the scope of project only required the basic setup of file structure no further analysis was performed beyond the gross footage versus property values. 
+
+##Introduction
+A team consisting of Alex Frey, Christopher Farrar, Lindsay Vitovsky, and Scott Anderwald was tasked to setup and analyze data from the City of New York Department of Housing.  For the project a file structure system was setup on GitHub where team members could collaborate on the project.  After setting up the project folder the data set from the depository was downloaded.  Before the analysis could be performed team members began the task of preliminary data investigation and cleaning.
+	While many different programs on the market is available for data analysis the team utilized the software called “R”.  R is an open source program with a large development and support community.  This large support base allows user to search out to the community for help when the need arises.  Like many other programs R will produce a better output when the data has been cleaned removing the NA’s.  
+	To ensure a reliable output from the software data during the analysis was cleaned up to remove characters that could potentially alter the results.  Along with the removal and during the analysis the team noticed the data was highly right skewed and would need to be ran using a log rhythmic function.  This function allowed the team to plot the highly skewed data on a histogram.
+	While the scope of the project was limited to setting up a project folder on GitHub with the associated subfolders only a preliminary analysis of square footage versus prices was requested.  According to the analysis the larger residential units consisting of 1 family and multi-family homes encompassed the larger amounts of sales. The spread of the data could suggest there is another plausible reason behind the increased sale prices of the residential homes.  While the data spread suggests there could be a variety of housing option for potential buyers for the Manhattan Borough there might still be an issue of cost to the buyers.
