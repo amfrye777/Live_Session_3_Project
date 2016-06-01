@@ -7,7 +7,7 @@ output:
     keep_md: TRUE
 ---
 
-##Summary
+##Analysis of Sales Price by Square Footage
 After plotting the square footage by sales price, we see that:
 
   * the highest sales for 1-, 2-, and 3- family homes were also the largest.
