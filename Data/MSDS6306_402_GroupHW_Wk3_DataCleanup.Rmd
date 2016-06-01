@@ -98,10 +98,16 @@ summary(MSales.homes[which(MSales.homes$sale.price.n<100000),])
 ```
 ...then we run our plots again, removing the values that do not indicate an actual sale was made.
 
-
-```{r LogOutliers}
-MSales.sale$outliers <- (log(MSales.sale$sale.price.n) <=5) + 0
-MSales.sale <- MSales.sale[which(MSales.sale$outliers==0),]
+``` {r Outliers}
+MSales.homes$outliers <- (log(MSales.homes$sale.price.n) <=5) + 0
+MSales.homes <- MSales.homes[which(MSales.homes$outliers==0),]
+x <- mean(log(MSales.homes$gross.sqft))
+y <- mean(log(MSales.homes$sale.price.n))
+x2 <- median(log(MSales.homes$gross.sqft))
+y2 <- median(log(MSales.homes$sale.price.n))
+plot(log(MSales.homes$gross.sqft),log(MSales.homes$sale.price.n),main = "Home Sales by Square Footage", ylab = "Sales Price", xlab = "Gross Square Feet")
+points(x, y, pch = 19, col = "red")
+points(x2, y2, pch = 19, col = "blue")
 ```
 
 
