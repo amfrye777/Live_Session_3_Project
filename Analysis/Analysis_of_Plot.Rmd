@@ -1,13 +1,13 @@
 ---
 title: "Analysis of Plot"
-author: "Vitovsky"
+author: "Anderwald, Frye, Farrar, Vitovsky"
 date: "May 30, 2016"
 output: 
   html_document:
     keep_md: TRUE
 ---
 
-##Analysis of Sales Price by Square Footage
+###Analysis of Sales Price by Square Footage
 After plotting the square footage by sales price, we see that:
 
   * the highest sales for 1-, 2-, and 3- family homes were also the largest.
@@ -26,7 +26,7 @@ After plotting the square footage by sales price, we see that:
   
 In summary, Manahttan is a relatively expensive place to live, but there is enough variability in the data that there is an array of options at different price points for those who have at least $750,000 or so to spend.  While square footage played a role in home price generally, the relationship seems to be additionally impacted by other factors, given that there are still a considerable number of more expensive homes in the lower square footage areas.
 
-``` {r Outliers echo=FALSE}
+``` {r Outliers2, echo=FALSE}
 MSales.homes$outliers <- (log(MSales.homes$sale.price.n) <=5) + 0
 MSales.homes <- MSales.homes[which(MSales.homes$outliers==0),]
 x <- mean(log(MSales.homes$gross.sqft))

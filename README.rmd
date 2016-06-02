@@ -40,7 +40,7 @@ twee()
     + Open README.RMD located inside Project Root
     + Modify DefaultDir input to your Project's Root Directory Path
     + Knit README.Rmd
-2. Regenerate RollingSales_Manhattan_Paper.HTML
+2. Regenerate RollingSales_Manhattan_Paper.HTML/.MD
     + Open RollingSales_Manhattan_Paper.RMD
     + Modify DefaultDir input to your Project's Root Directory Path
     + Knit RollingSales_Manhattan_Paper.RMD

@@ -1,6 +1,6 @@
 ---
 title: "RollingSales_Manhattan_Paper"
-author: Russell Anderwald; Alex Frye; Christopher Farrar; Lindsay Vitovsky
+author: Scott Anderwald; Alex Frye; Christopher Farrar; Lindsay Vitovsky
 output: 
   html_document:
     keep_md: TRUE
@@ -14,19 +14,29 @@ DataDir<-paste(DefaultDir,"/Data",sep = "")
 AnalysisDir<-paste(DefaultDir,"/Analysis",sep = "")
 ```
 
+#Executive Summary
+This project provides an analysis of the property values for the Borough of Manhattan.  This analysis was only provided for the Borough of the Manhattan area no other areas where included in the analysis. In particular, the question of the gross footage versus property values. 
+
+The analysis began with the importing and cleaning of the data.  Since certain computations produce incompatible characters that alter the results of the analysis cleaning and removing these characters made it possible for a more precise analysis to be performed.  
+The project provided a means to teach file structure and simple analysis on data sets.  Since the scope of project only required the basic setup of file structure no further analysis was performed beyond the gross footage versus property values. 
+
 #Introduction
+A team consisting of Alex Frye, Christopher Farrar, Lindsay Vitovsky, and Scott Anderwald was tasked to setup and analyze data from the City of New York Department of Housing.  For the project a file structure system was setup on GitHub where team members could collaborate on the project.  After setting up the project folder the data set from the depository was downloaded.  Before the analysis could be performed team members began the task of preliminary data investigation and cleaning.
+	While many different programs on the market is available for data analysis the team utilized the software called “R”.  R is an open source program with a large development and support community.  This large support base allows user to search out to the community for help when the need arises.  Like many other programs R will produce a better output when the data has been cleaned removing the NA’s.  
+	To ensure a reliable output from the software data during the analysis was cleaned up to remove characters that could potentially alter the results.  Along with the removal and during the analysis the team noticed the data was highly right skewed and would need to be ran using a log rhythmic function.  This function allowed the team to plot the highly skewed data on a histogram.
+	While the scope of the project was limited to setting up a project folder on GitHub with the associated subfolders only a preliminary analysis of square footage versus prices was requested.  According to the analysis the larger residential units consisting of 1 family and multi-family homes encompassed the larger amounts of sales. The spread of the data could suggest there is another plausible reason behind the increased sale prices of the residential homes.  While the data spread suggests there could be a variety of housing option for potential buyers for the Manhattan Borough there might still be an issue of cost to the buyers.
 
 
 #Data Cleanup on Annual Manhattan Housing Sales 
 
-When originally loading data into R for analysis, we identified several inconsistencies with how the data was represented upon initial load. Due to these inconsistencies we have outlined several steps we went through to clean our data types and handling of data outliers where appropriate. The next sections will discuss and walk through the process of cleaning our Manhattan Sales Dataset
+When originally loading data into R for analysis, we identified several inconsistencies with how the data was represented upon initial load. Due to these inconsistencies we have outlined several steps we went through to clean our data types and handling of data outliers where appropriate. The next sections will discuss and walk through the process of cleaning our Manhattan Sales Dataset. The data cleanup file can be found in the data directory of this project.
 
 ``` {r data, child = paste(DataDir,"/MSDS6306_402_GroupHW_Wk3_DataCleanup.rmd",sep = "")}
 ```
 
 #Data Analysis on the relationship between Sales Price and Square Footage
 
-After cleaning the data, we were able to focus in on our analysis on the plot of Sales price and Square Footage. Below are our findings. 
+After cleaning the data, we were able to focus in on our analysis on the plot of Sales price and Square Footage. Below are our findings. The analysis file can be found in the analysis directory of this project (Note: the Analysis file is dependent on environment variables from the Data Cleanup File).
 
 ``` {r Analysis, child = paste(AnalysisDir,"/Analysis_of_Plot.rmd",sep = "")}
 ```
@@ -35,4 +45,4 @@ After cleaning the data, we were able to focus in on our analysis on the plot of
 
 In analyzing our raw Manhattan Housing Sales data from nyc.gov, it was imperative that we do some data cleanup prior to analyzing anything. Two important parts to data analysis is ensuring your data is gathered consistently and reliably, and ensuring that your data gathered is clean for analysis. It is very easy to compute findings with reliable data, but misrepresent the information through poor assumptions that the data is 100% clean when it arrives. 
 
-With our cleaned data, we have evidence that there is a positive trend in the data identifying that as square footage of homes increase, so does that of Sales price. Although our findings provide evidence of this conclusion, we may only state this for the population of Manhattan sales gathered by nyc.gov in the range 2015-05-01 through 2016-04-29. Inferences to housing prices in any other region or time period may not be concluded without further investigation.
+With our cleaned data, we have evidence that there is a general positive trend in the data identifying that as square footage of homes increase, so does that of Sales price. Although our findings provide evidence of this conclusion, we feel as though there may be other factors playing into the home price. Future discovery is needed to discover whether sale quarter, zip codes, or other factors may also cause fluctuation in pricing. All findings made on this dataset may only be assessed for the population of Manhattan sales gathered by nyc.gov in the range 2015-05-01 through 2016-04-29. Inferences to housing prices in any other region or time period may not be concluded without further data gathering and investigation.

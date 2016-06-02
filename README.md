@@ -46,10 +46,12 @@ FILE TREE STRUCTURE DEFINED
     ##    |__rollingsales_manhattan_Paper.RMD
     ##    |__rollingsales_manhattan_Paper_files
     ##       |__figure-html
+    ##          |__123FamilyHomes-1.png
     ##          |__CheckHist-1.png
     ##          |__CheckHist-2.png
     ##          |__CheckHist-3.png
-    ##          |__pressure-1.png
+    ##          |__Outliers-1.png
+    ##          |__Outliers2-1.png
     ##          |__TransformTheData-1.png
     ##          |__TransformTheData-2.png
     ## -- README.md
@@ -65,7 +67,7 @@ PROJECT INSTRUCTIONS
     -   Modify DefaultDir input to your Project's Root Directory Path
     -   Knit README.Rmd
 
-2.  Regenerate RollingSales\_Manhattan\_Paper.HTML
+2.  Regenerate RollingSales\_Manhattan\_Paper.HTML/.MD
     -   Open RollingSales\_Manhattan\_Paper.RMD
     -   Modify DefaultDir input to your Project's Root Directory Path
     -   Knit RollingSales\_Manhattan\_Paper.RMD
